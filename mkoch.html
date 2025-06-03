@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chúc mừng sinh nhật em🎉🥳</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Neue', cursive, sans-serif;
+      background: linear-gradient(270deg, #ffd1dc, #ffb6c1, #ffe0f7, #e0f7ff);
+      background-size: 800% 800%;
+      animation: gradientShift 15s ease infinite;
+      overflow: hidden;
+      text-align: center;
+      color: #ff1493;
+      position: relative;
+      height: 100vh;
+    }
+
+    @keyframes gradientShift {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    h1 {
+      font-size: 3.5em;
+      margin-top: 80px;
+      opacity: 0;
+      transform: scale(0.6);
+      animation: popScale 1s ease forwards;
+      animation-delay: 0.3s;
+      color: #ff3366;
+      text-shadow: 0 0 15px #ff66aa;
+      user-select: none;
+    }
+
+    @keyframes popScale {
+      0% { opacity: 0; transform: scale(0.6); }
+      50% { opacity: 1; transform: scale(1.1); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .message {
+      font-size: 1.4em;
+      max-width: 650px;
+      margin: 25px auto 0;
+      min-height: 3em;
+      color: #d6336c;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 1.5s;
+      user-select: none;
+    }
+
+    @keyframes fadeIn {
+      to {opacity: 1;}
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -80px;
+      width: 40px;
+      height: 60px;
+      border-radius: 50% / 60%;
+      opacity: 0.8;
+      animation: floatUp 10s linear infinite;
+      filter: drop-shadow(0 0 2px #ff77aa);
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0);
+        opacity: 0.8;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+
+    .gift-btn {
+      margin-top: 35px;
+      padding: 14px 36px;
+      font-size: 1.3em;
+      border: none;
+      background-color: #ff4c8b;
+      color: white;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 76, 139, 0.6);
+      transition: transform 0.25s ease;
+      opacity: 0;
+      animation: fadeInUp 0.7s ease forwards;
+      animation-delay: 2.5s;
+      z-index: 10;
+    }
+
+    .gift-btn:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      animation: explode 1s ease-out forwards;
+    }
+
+    @keyframes explode {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--x), var(--y)) scale(0.3);
+        opacity: 0;
+      }
+    }
+
+    .music-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 1.7em;
+      cursor: pointer;
+      color: #ff3366;
+      filter: drop-shadow(0 0 2px #ff77aa);
+      z-index: 11;
+    }
+
+    .cake {
+      position: fixed;
+      top: 60vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 180px;
+      height: 180px;
+      background-image: url('https://media.discordapp.net/attachments/1368956522813460522/1378630796029460510/birthday-cake-emoji-clipart-xl.png?ex=683d4d7b&is=683bfbfb&hm=9b6478e6220c9206318e01a799b2772890ba55c9e2f386d1e36233605bc1b305&=&format=webp&quality=lossless&width=833&height=833');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 15;
+      transition: top 1.5s ease, opacity 0.3s ease;
+    }
+
+    .firework-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 200px;
+      height: 200px;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      z-index: 20;
+    }
+
+    .firework {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 6px;
+      height: 20px;
+      background: radial-gradient(circle, #fff 0%, transparent 70%);
+      border-radius: 50% 50% 0 0;
+      transform-origin: bottom center;
+      opacity: 0;
+      animation: fireworkExplode 1s ease forwards;
+    }
+
+    @keyframes fireworkExplode {
+      0% { opacity: 1; transform: translateY(0) scaleY(1); }
+      100% { opacity: 0; transform: translateY(-100px) scaleY(3); }
+    }
+
+    .photo {
+      position: fixed;
+      width: 120px;
+      height: 120px;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+      opacity: 0;
+      pointer-events: none;
+      border: 5px solid white;
+      background: white;
+      z-index: 30;
+      transition: transform 3s ease, opacity 3s ease;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Responsive cho điện thoại */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.2em;
+        margin-top: 50px;
+      }
+      .message {
+        font-size: 1.1em;
+        max-width: 90%;
+      }
+      .gift-btn {
+        font-size: 1.1em;
+        padding: 12px 28px;
+      }
+      .cake {
+        width: 120px;
+        height: 120px;
+        top: 65vh !important;
+      }
+      .firework-container {
+        width: 140px;
+        height: 140px;
+      }
+      .photo {
+        width: 70px !important;
+        height: 70px !important;
+        border-radius: 15px !important;
+        border-width: 3px !important;
+        box-shadow: 0 0 10px rgba(255, 105, 180, 0.6) !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio id="music" loop src="https://cdn.discordapp.com/attachments/980491437315616818/1379153898044002334/happy-birthday-254480.mp3?ex=683f34a8&is=683de328&hm=92a707f3eac6cf4b860ef43c91ef6082bafbd16491186d37d23c435cf1ac879f&"></audio>
+<button class="music-btn" onclick="toggleMusic()">🎵</button>
+
+  <h1>🎂 Chúc mừng sinh nhật! 🎉</h1>
+  <div class="message" id="typing"></div>
+  <button class="gift-btn" id="giftBtn">🎁 Mở quà bất ngờ</button>
+
+  <div class="cake" id="cake"></div>
+  <div class="firework-container" id="fireworkContainer"></div>
+
+  <script>
+    const message = "Chúc mừng sinh nhật người con gái tuyệt vời nhất cuộc đời anh! Anh mong em luôn mạnh khỏe, luôn rạng rỡ và hạnh phúc. Anh sẽ luôn cố gắng để mang đến cho em những điều đẹp nhất, vì em xứng đáng được yêu thương trọn vẹn.";
+    let idx = 0;
+    function type() {
+      if (idx < message.length) {
+        document.getElementById("typing").textContent += message[idx++];
+        setTimeout(type, 45);
+      }
+    }
+    setTimeout(type, 1600);
+
+    const colors = ['#ffb6c1', '#ffd1dc', '#ff69b4', '#ffc0cb', '#ff77aa'];
+    for (let i = 0; i < 25; i++) {
+      const balloon = document.createElement("div");
+      balloon.className = "balloon";
+      balloon.style.left = Math.random() * 100 + "vw";
+      balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      balloon.style.animationDelay = (Math.random() * 10) + "s";
+      balloon.style.animationDuration = (7 + Math.random() * 8) + "s";
+      balloon.style.bottom = "-60px";
+      document.body.appendChild(balloon);
+    }
+
+    function toggleMusic() {
+      const music = document.getElementById("music");
+      music.paused ? music.play() : music.pause();
+    }
+
+    function showConfetti() {
+      const confettiColors = ['#ff6f91', '#ff9671', '#ffc75f', '#f9f871', '#ff3c78'];
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+        confetti.style.setProperty('--x', (Math.random() * 400 - 200) + 'px');
+        confetti.style.setProperty('--y', (Math.random() * -400) + 'px');
+        confetti.style.left = (window.innerWidth / 2) + 'px';
+        confetti.style.top = (window.innerHeight / 2) + 'px';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 1000);
+      }
+    }
+
+    function showFirework() {
+      const container = document.getElementById('fireworkContainer');
+      container.innerHTML = '';
+      container.style.opacity = 1;
+      for (let i = 0; i < 30; i++) {
+        const fw = document.createElement('div');
+        fw.className = 'firework';
+        fw.style.transform = `rotate(${i * 12}deg) translateY(-40px)`;
+        container.appendChild(fw);
+      }
+      setTimeout(() => container.style.opacity = 0, 1000);
+    }
+//ảnh trái tim thay
+    const cake = document.getElementById('cake');
+    const photoUrls = [
+      "https://cdn.discordapp.com/attachments/980491437315616818/1379144288041959425/IMG_20250207_224834.jpg?ex=683f2bb5&is=683dda35&hm=0179fcf699a2b19817412ec3761cd3afe2d7e000c40d08bca5652324b45b303c&",
+      "https://cdn.discordapp.com/attachments/980491437315616818/1379144288314720296/IMG_20250207_224923.jpg?ex=683f2bb5&is=683dda35&hm=7f6bb906a4f6b6a110a267ce5ab2ecb276dc679d0d51a44f2f5fd90ca2d1eb99&",
+      "https://cdn.discordapp.com/attachments/980491437315616818/1379144288041959425/IMG_20250207_224834.jpg?ex=683f2bb5&is=683dda35&hm=0179fcf699a2b19817412ec3761cd3afe2d7e000c40d08bca5652324b45b303c&",
+      "https://cdn.discordapp.com/attachments/980491437315616818/1379144287765139617/Screenshot_2025-02-27-20-54-04-136_com.facebook.orca.jpg?ex=683f2bb5&is=683dda35&hm=1bb1bfdb8f6e9764e1fefbf1697953e2308d71fe92f4fcd0464e3f9bbe16e950&",
+      "https://cdn.discordapp.com/attachments/980491437315616818/1379143908088348752/IMG_20250207_224923.jpg?ex=683f2b5a&is=683dd9da&hm=ec5f9d4960e1839a0930361ce42a7504708cd095296cf9da4e4f8d0f56c66c67&"
+    ];
+
+    document.getElementById("giftBtn").addEventListener("click", () => {
+      cake.style.top = '50vh';
+      cake.style.opacity = 1;
+      setTimeout(() => {
+        showConfetti();
+        showFirework();
+        spawnHeartPhotosCentered();
+      }, 1500);
+    });
+
+    function createHeartPhotoCentered(idx, total) {
+      const photo = document.createElement('img');
+      photo.src = photoUrls[idx % photoUrls.length];
+      photo.className = 'photo';
+      document.body.appendChild(photo);
+
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      const t = Math.PI * 2 * (idx / total);
+
+      // Tỉ lệ scale trái tim nhỏ lại trên màn hình nhỏ
+      let scale = 22;
+      if(window.innerWidth <= 480) {
+        scale = 14;
+      }
+
+      const targetX = scale * 16 * Math.pow(Math.sin(t), 3);
+      const targetY = -scale * (13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+
+      photo.style.left = centerX + 'px';
+      photo.style.top = centerY + 'px';
+      photo.style.opacity = '1';
+      photo.style.pointerEvents = 'auto';
+
+      let progress = 0;
+      const steps = 100;
+
+      function animate() {
+        if (progress <= steps) {
+          const curX = centerX + (targetX * progress / steps);
+          const curY = centerY + (targetY * progress / steps);
+          photo.style.left = curX + 'px';
+          photo.style.top = curY + 'px';
+          progress++;
+          requestAnimationFrame(animate);
+        } else {
+          photo.style.left = (centerX + targetX) + 'px';
+          photo.style.top = (centerY + targetY) + 'px';
+        }
+      }
+      animate();
+    }
+
+    function spawnHeartPhotosCentered() {
+      const totalPhotos = 30;
+      for (let i = 0; i < totalPhotos; i++) {
+        setTimeout(() => createHeartPhotoCentered(i, totalPhotos), i * 70);
+      }
+    }
+  </script>
+</body>
+</html>
